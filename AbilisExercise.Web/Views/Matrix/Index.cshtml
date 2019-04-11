@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="container" >
+
+    <form>
+
+            <div class="row">
+
+                <div class="col">
+                    <label for="title">Enter the Matrix Size (3-15): </label>
+                    <input type="number" min="3" max="15" id="matrix_size" value="" class="form-control" />
+                </div>
+
+                <div class="col">
+                    <label for="title">Select the Matrix Format: </label>
+                    <select id="matrix_base" class="form-control">
+                        <option value="matrix_int">Decimal</option>
+                        <option value="matrix_bin">Binary</option>
+                        <option value="matrix_hexa">Hexa</option>
+                    </select>
+                </div>
+                <div class="col align-self-center">
+                    <br />
+                    <button type="submit" id="getMatrix" class="btn btn-primary">Get Table </button>
+                </div>
+
+            </div>
+        
+    </form>
+
+    <br /><br />
+    <div id="matrix" class="row">
+
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        var ServerURL = (function () {
+
+            var getURL = function () {
+                var matrixUrl = '@Url.RouteUrl("Default", new {httproute = "", controller = "Matrix/getMatrix" })';
+                return matrixUrl;
+            }
+            return {
+                //register function in module.
+                getURL: getURL
+            };
+
+        }());
+    </script>
+<script src="~/Scripts/Table.js"></script>
+ 
+}
